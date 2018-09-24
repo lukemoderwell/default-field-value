@@ -1,2 +1,2 @@
 # default-field-value
-Contentful UI Extension (Default Field Value)
+Contentful UI Extension (Default Layout Field Value)
