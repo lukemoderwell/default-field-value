@@ -3,7 +3,7 @@
   "id": "layout-default-field-value",
   "name": "Default value for the layout field",
   "srcdoc": "extension.html",
-  "fieldTypes": ["Symbols"],
+  "fieldTypes": ["Symbol", "Symbols"],
   "parameters": {
     "instance": [
       {

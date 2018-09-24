@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Layout Default Picker</title>
   <link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css">
   <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
 </head>
+
 <body>
   <div class="cf-form-field">
+    <select class="cfnext-select-box cf-form-select">
+      <option value="">Choose a value</option>
+      <option label="container-fluid" value="string:container-fluid">container-fluid</option>
+      <option label="container" value="string:container">container</option>
+      <option label="eight-column" value="string:eight-column" selected="selected">eight-column</option>
+    </select>
     <input type="text" class="cf-form-input">
-    <div class="cf-form-hint">Default layout:
-      <span class="default-value"></span>
-    </div>
+    <div class="cf-form-hint">Choose a layout</div>
   </div>
   <script>
     'use strict';
     window.contentfulExtension.init(function (extension) {
       extension.window.startAutoResizer();
-      var inputEl = document.querySelector('.cf-form-input');
+      var inputEl = document.querySelector('.cf-form-select');
       inputEl.addEventListener('input', keyboardInputHandler);
+  
       window.addEventListener('onbeforeunload', unloadHandler);
+      
+      // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
-      document.querySelector('.default-value').appendChild(document.createTextNode(defaultLayout))
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
       }
+
       function keyboardInputHandler() {
         var value = inputEl.value;
         if (typeof value !== 'string' || value === '') {
@@ -33,6 +42,7 @@
           extension.field.setValue(value);
         }
       }
+
       function unloadHandler() {
         window.removeEventListener('onbeforeunload', unloadHandler);
         inputEl.removeEventListener('input', keyboardInputHandler);
@@ -41,5 +51,5 @@
     });
   </script>
 </body>
-</html>
 
+</html>
