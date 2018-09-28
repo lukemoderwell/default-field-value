@@ -28,7 +28,6 @@
       var inputEl = document.querySelector('.cf-form-select');
       console.log(inputEl);
       inputEl.addEventListener('input', keyboardInputHandler);
-  
       window.addEventListener('onbeforeunload', unloadHandler);
       
       // get instance vars from extension.json
@@ -39,6 +38,7 @@
 
       function keyboardInputHandler() {
         var value = inputEl.value;
+        console.log(inputEl.value);
         if (typeof value !== 'string' || value === '') {
           extension.field.removeValue();
         } else {
