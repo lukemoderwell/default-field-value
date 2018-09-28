@@ -26,6 +26,7 @@
     window.contentfulExtension.init(function (extension) {
       extension.window.startAutoResizer();
       var inputEl = document.querySelector('.cf-form-select');
+      console.log(inputEl);
       inputEl.addEventListener('input', keyboardInputHandler);
   
       window.addEventListener('onbeforeunload', unloadHandler);
