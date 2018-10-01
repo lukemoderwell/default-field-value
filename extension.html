@@ -17,7 +17,7 @@
       <option value="">Choose a value</option>
       <option label="container-fluid" value="container-fluid">container-fluid</option>
       <option label="container" value="container">container</option>
-      <option label="eight-column" value="eight-column" selected="selected">eight-column</option>
+      <option label="eight-column" value="eight-column">eight-column</option>
     </select>
     <div class="cf-form-hint">Choose a layout</div>
   </div>
@@ -34,6 +34,8 @@
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
+        var optionEl = document.querySelector(`[value=${defaultLayout}]`);
+        optionEl.setAttribute('selected', 'true');
         extension.field.setValue(defaultLayout);
       }
 
