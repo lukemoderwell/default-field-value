@@ -29,18 +29,19 @@
       var inputEl = document.querySelector('.cf-form-select');
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
-      setSelectedDefault(extension.parameters.instance.default);
       
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
+        setSelectedDefault(extension.field._value);
       }
 
       function setSelectedDefault(defaultOption) {
         if (inputEl.value === undefined || inputEl.value === '') {
           var optionEl = document.querySelector(`[value=${defaultOption}]`);
           optionEl.setAttribute('selected', 'true');
+          console.log('default option: ' + optionEl.value);
         }
       }
 
