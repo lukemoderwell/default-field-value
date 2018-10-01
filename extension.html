@@ -25,19 +25,21 @@
     'use strict';
     window.contentfulExtension.init(function (extension) {
       extension.window.startAutoResizer();
+      console.log(extension);
       var inputEl = document.querySelector('.cf-form-select');
-      console.log(inputEl);
-      console.log(inputEl.value);
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
+      setSelected(extension.parameters.instance.default);
       
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
-        var optionEl = document.querySelector(`[value=${defaultLayout}]`);
-        optionEl.setAttribute('selected', 'true');
         extension.field.setValue(defaultLayout);
-        console.log(extension.field)
+      }
+
+      function setSelected(defaultOption) {
+        var optionEl = document.querySelector(`[value=${defaultOption}]`);
+        optionEl.setAttribute('selected', 'true');
       }
 
       function keyboardInputHandler() {
