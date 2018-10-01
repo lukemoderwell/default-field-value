@@ -29,7 +29,7 @@
       var inputEl = document.querySelector('.cf-form-select');
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
-      setSelected(extension.parameters.instance.default);
+      setSelectedDefault(extension.parameters.instance.default);
       
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
@@ -37,9 +37,11 @@
         extension.field.setValue(defaultLayout);
       }
 
-      function setSelected(defaultOption) {
-        var optionEl = document.querySelector(`[value=${defaultOption}]`);
-        optionEl.setAttribute('selected', 'true');
+      function setSelectedDefault(defaultOption) {
+        if (inputEl.value === undefined || inputEl.value === '') {
+          var optionEl = document.querySelector(`[value=${defaultOption}]`);
+          optionEl.setAttribute('selected', 'true');
+        }
       }
 
       function keyboardInputHandler() {
