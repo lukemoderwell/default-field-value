@@ -25,8 +25,8 @@
     'use strict';
     window.contentfulExtension.init(function (extension) {
       extension.window.startAutoResizer();
-      console.log(extension);
       var inputEl = document.querySelector('.cf-form-select');
+
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
       
@@ -34,20 +34,11 @@
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
-        setSelectedDefault(extension.field._value);
-      }
-
-      function setSelectedDefault(defaultOption) {
-        if (inputEl.value === undefined || inputEl.value === '') {
-          var optionEl = document.querySelector(`[value=${defaultOption}]`);
-          optionEl.setAttribute('selected', 'true');
-          console.log('default option: ' + optionEl.value);
-        }
+        setSelectedDefault(inputEl, extension.field._value);
       }
 
       function keyboardInputHandler() {
         var value = inputEl.value;
-        console.log(inputEl.value);
         if (typeof value !== 'string' || value === '') {
           extension.field.removeValue();
         } else {
@@ -59,8 +50,18 @@
         window.removeEventListener('onbeforeunload', unloadHandler);
         inputEl.removeEventListener('input', keyboardInputHandler);
         detachValueChangeHandler();
-      }
+      }    
     });
+
+    function setSelectedDefault(input, defaultOption) {
+      if (input.value === undefined || input.value === '') {
+        var optionEl = document.querySelector(`[value=${defaultOption}]`);
+        optionEl.setAttribute('selected', 'true');
+        input.value = optionEl.value;
+        console.log('default option: ' + optionEl.value);
+      }
+    }
+
   </script>
 </body>
 
