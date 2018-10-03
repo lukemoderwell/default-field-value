@@ -93,10 +93,11 @@
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
-        console.log('zzz')
         extension.field.setValue(defaultLayout);
-        setSelectedDefault(inputEl, extension.field._value);
+        extension.field._value;
       }
+
+      setSelectedDefault(inputEl, extension.field._value);
 
       function keyboardInputHandler() {
         var value = inputEl.value;
