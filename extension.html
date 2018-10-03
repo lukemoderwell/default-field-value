@@ -7,7 +7,67 @@
   <link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css">
   <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
   <style>
-    .cfnext-select-box{color:inherit;font-size:inherit;font-family:inherit;cursor:inherit;background:none;line-height:normal;border:0;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-size:inherit;height:33px;line-height:normal;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:6px;padding-bottom:7px;border:1px solid #d6dce4;border-color:#969fa6;-webkit-border-radius:2px;border-radius:2px;background-color:#fff;padding-left:1ex;padding-right:8ex;-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), none;background-position:center right 0.8em;background-repeat:no-repeat, repeat;-webkit-background-size:0.7em, 100%;-moz-background-size:0.7em, 100%;background-size:0.7em, 100%;}.cfnext-select-box::-ms-expand{display:none;}.cfnext-select-box:hover:not(:disabled){background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -webkit-linear-gradient(top, #fff, #f9f9f9);background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -moz-linear-gradient(top, #fff, #f9f9f9);background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -o-linear-gradient(top, #fff, #f9f9f9);background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -ms-linear-gradient(top, #fff, #f9f9f9);background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), linear-gradient(to bottom, #fff, #f9f9f9);}.cfnext-select-box:disabled{background-color:#ededed;background-image:url("https://static.contentful.com/app/svg/dd-arrow-down-disabled-75f44f79cd.svg");border:1px solid #d6dce4;color:#9c9c9c;cursor:not-allowed;}.cfnext-select-box[aria-invalid=true]{border-color:#e34e48;}
+    .cfnext-select-box {
+      color: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      cursor: inherit;
+      background: none;
+      line-height: normal;
+      border: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-size: inherit;
+      height: 33px;
+      line-height: normal;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding-top: 6px;
+      padding-bottom: 7px;
+      border: 1px solid #d6dce4;
+      border-color: #969fa6;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      background-color: #fff;
+      padding-left: 1ex;
+      padding-right: 8ex;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), none;
+      background-position: center right 0.8em;
+      background-repeat: no-repeat, repeat;
+      -webkit-background-size: 0.7em, 100%;
+      -moz-background-size: 0.7em, 100%;
+      background-size: 0.7em, 100%;
+    }
+
+    .cfnext-select-box::-ms-expand {
+      display: none;
+    }
+
+    .cfnext-select-box:hover:not(:disabled) {
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -webkit-linear-gradient(top, #fff, #f9f9f9);
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -moz-linear-gradient(top, #fff, #f9f9f9);
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -o-linear-gradient(top, #fff, #f9f9f9);
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), -ms-linear-gradient(top, #fff, #f9f9f9);
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-eb3dc41e9d.svg"), linear-gradient(to bottom, #fff, #f9f9f9);
+    }
+
+    .cfnext-select-box:disabled {
+      background-color: #ededed;
+      background-image: url("https://static.contentful.com/app/svg/dd-arrow-down-disabled-75f44f79cd.svg");
+      border: 1px solid #d6dce4;
+      color: #9c9c9c;
+      cursor: not-allowed;
+    }
+
+    .cfnext-select-box[aria-invalid=true] {
+      border-color: #e34e48;
+    }
   </style>
 </head>
 
@@ -26,13 +86,14 @@
     window.contentfulExtension.init(function (extension) {
       extension.window.startAutoResizer();
       var inputEl = document.querySelector('.cf-form-select');
-
+      
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
-      
+
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
+        console.log('zzz')
         extension.field.setValue(defaultLayout);
         setSelectedDefault(inputEl, extension.field._value);
       }
@@ -50,7 +111,7 @@
         window.removeEventListener('onbeforeunload', unloadHandler);
         inputEl.removeEventListener('input', keyboardInputHandler);
         detachValueChangeHandler();
-      }    
+      }
     });
 
     function setSelectedDefault(input, defaultOption) {
@@ -61,7 +122,6 @@
         console.log('default option: ' + optionEl.value);
       }
     }
-
   </script>
 </body>
 
