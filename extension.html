@@ -84,9 +84,10 @@
   <script>
     'use strict';
     window.contentfulExtension.init(function (extension) {
+      console.log(extension);
       extension.window.startAutoResizer();
       var inputEl = document.querySelector('.cf-form-select');
-      
+      console.log(inputEl);
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
 
@@ -103,8 +104,10 @@
         var value = inputEl.value;
         if (typeof value !== 'string' || value === '') {
           extension.field.removeValue();
+          console.log('keyboard input removed value');
         } else {
           extension.field.setValue(value);
+          console.log('keyboard input set value');
         }
       }
 
@@ -112,9 +115,11 @@
         window.removeEventListener('onbeforeunload', unloadHandler);
         inputEl.removeEventListener('input', keyboardInputHandler);
         detachValueChangeHandler();
+        console.log('unloader ran');
       }
 
       function setSelectedDefault(input, defaultOption) {
+        console.log(input.value)
         if (input.value === undefined || input.value === '') {
           var optionEl = document.querySelector(`[value=${defaultOption}]`);
           optionEl.setAttribute('selected', 'true');
