@@ -93,6 +93,7 @@
 
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
+      console.log(`defaultLayout: ${defaultLayout}`);
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
         console.log(extension.field);
