@@ -95,7 +95,7 @@
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         console.log('zzz')
         extension.field.setValue(defaultLayout);
-        // setSelectedDefault(inputEl, extension.field._value);
+        setSelectedDefault(inputEl, extension.field._value);
       }
 
       function keyboardInputHandler() {
@@ -112,16 +112,16 @@
         inputEl.removeEventListener('input', keyboardInputHandler);
         detachValueChangeHandler();
       }
-    });
 
-    function setSelectedDefault(input, defaultOption) {
-      if (input.value === undefined || input.value === '') {
-        var optionEl = document.querySelector(`[value=${defaultOption}]`);
-        optionEl.setAttribute('selected', 'true');
-        input.value = optionEl.value;
-        console.log('default option: ' + optionEl.value);
+      function setSelectedDefault(input, defaultOption) {
+        if (input.value === undefined || input.value === '') {
+          var optionEl = document.querySelector(`[value=${defaultOption}]`);
+          optionEl.setAttribute('selected', 'true');
+          input.value = optionEl.value;
+          console.log('default option: ' + optionEl.value);
+        }
       }
-    }
+    });
   </script>
 </body>
 
