@@ -95,10 +95,9 @@
       var defaultLayout = extension.parameters.instance.defaultLayout;
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
-        console.log(extension.field._value);
+        console.log(extension.field);
+        setSelectedDefault(inputEl, defaultLayout);
       }
-
-      setSelectedDefault(inputEl, defaultLayout);
 
       function keyboardInputHandler() {
         var value = inputEl.value;
