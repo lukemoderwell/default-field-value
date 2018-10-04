@@ -3,7 +3,7 @@
   "id": "layout-default-field-value",
   "name": "Default value for the layout field",
   "srcdoc": "extension.html",
-  "fieldTypes": ["Symbol", "Symbols"],
+  "fieldTypes": ["Symbols"],
   "parameters": {
     "instance": [
       {
@@ -12,7 +12,6 @@
         "description": "Set which layout is the default",
         "type": "Enum",
         "options": [{"container-fluid": "container-fluid"}, {"container": "container"}, {"eight-column": "eight-column"}],
-        "default": "container-fluid",
         "labels": {"empty": "Choose a layout"},
         "required": true
       }
