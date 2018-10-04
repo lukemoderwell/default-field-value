@@ -90,7 +90,7 @@
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
       var defaultLayout = extension.parameters.instance.defaultLayout;
-      document.querySelector('.default-value').appendChild(document.createTextNode(defaultLayout))
+      console.log(defaultLayout);
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
       }
