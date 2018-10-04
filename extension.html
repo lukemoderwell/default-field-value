@@ -94,9 +94,15 @@
       // get instance vars from extension.json
       var defaultLayout = extension.parameters.instance.defaultLayout;
       console.log(`defaultLayout: ${defaultLayout}`);
+      console.log(extension.field.getValue());
+      console.log(extension.field.getSys())
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
         extension.field.setValue(defaultLayout);
         console.log(extension.field);
+      }
+
+      // only run if the page has no layout defined
+      if (inputEl.value === undefined || inputEl.value === '') {
         setSelectedDefault(inputEl, defaultLayout);
       }
 
@@ -120,12 +126,10 @@
 
       function setSelectedDefault(input, defaultOption) {
         console.log(input.value)
-        if (input.value === undefined || input.value === '') {
-          var optionEl = document.querySelector(`[value=${defaultOption}]`);
-          optionEl.setAttribute('selected', 'true');
-          input.value = optionEl.value;
-          console.log('default option: ' + optionEl.value);
-        }
+        var optionEl = document.querySelector(`[value=${defaultOption}]`);
+        optionEl.setAttribute('selected', 'true');
+        input.value = optionEl.value;
+        console.log('default option: ' + optionEl.value);
       }
     });
   </script>
