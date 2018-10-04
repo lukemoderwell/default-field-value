@@ -90,11 +90,9 @@
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
       var defaultLayout = extension.parameters.instance.defaultLayout;
-      console.log(defaultLayout);
+      console.log(`default layout: ${defaultLayout}`);
       if (extension.entry.getSys().version == 1 && extension.field.getValue() === undefined) {
-        console.log('setting field value')
         extension.field.setValue(defaultLayout);
-        console.log(extension.field);
       }
       function valueChangeHandler(value) {
         inputEl.value = value;
