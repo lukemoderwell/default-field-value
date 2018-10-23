@@ -11,7 +11,7 @@
         "name": "Default layout",
         "description": "Set which layout is the default",
         "type": "Enum",
-        "options": [{"container-fluid": "container-fluid"}, {"container": "container"}, {"eight-column": "eight-column"}],
+        "options": [{"container-fluid": "container-fluid"}, {"container": "container"}, {"eight-column": "eight-column"}, {"no-header-no-footer": "no-header-no-footer"}],
         "labels": {"empty": "Choose a layout"},
         "required": true
       }
